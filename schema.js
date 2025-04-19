@@ -1,7 +1,7 @@
 export const typeDefs = `#graphql
 type Query {
   hello: [String!]!
-  products: [Product!]!
+  products(filter: ProductsFilterInput): [Product!]!
   product(id: ID!): Product
   categories: [Category!]!
   category(id: ID!): Category
@@ -22,7 +22,7 @@ type Query {
   type Category {
       id: ID!
       name: String!
-      products: [Product!]!
+      products(filter: ProductsFilterInput): [Product!]!
   }
 
   type Review {
@@ -32,5 +32,10 @@ type Query {
       comment: String!
       rating: Int!
       productId: Product!
+  }
+
+  input ProductsFilterInput {
+    onSale: Boolean
+    avgRating: Int
   }
 `;
